@@ -1,0 +1,52 @@
+# dbt_project.yml
+
+# Nomeie seu projeto! Nomes de projetos devem conter apenas letras minúsculas
+# e underscores (sublinhados). Um bom nome de pacote deve refletir o nome da 
+# sua organização ou o uso pretendido desses modelos.
+name: 'dbt_northwind'
+version: '1.0.0'
+
+# Essa configuração determina qual "profile" o dbt deve usar para este projeto.
+profile: 'dbt_northwind'
+
+# Essas configurações especificam onde o dbt deve procurar diferentes tipos de arquivos.
+# A configuração `model-paths`, por exemplo, indica que os modelos neste projeto 
+# podem ser encontrados no diretório "models/". Provavelmente você não precisará alterar isso!
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["data_tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+docs-paths: ["docs"]
+asset-paths: ["assets"]
+
+# Diretórios a serem removidos pelo comando `dbt clean`
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuração dos modelos
+# Documentação completa: https://docs.getdbt.com/docs/configuring-models
+
+# Neste exemplo de configuração, informamos ao dbt para criar todos os modelos
+# no diretório "example/" como views. Essas configurações podem ser sobrescritas 
+# nos arquivos individuais dos modelos usando a macro `{{ config(...) }}`.
+models:
+  dbt_northwind:
+    raw:
+      +schema: raw
+      +materialized: table
+      +tags: ['raw', 'color:gray']
+    stg:
+      +schema: stg
+      +materialized: table
+      +tags: ['stg', 'color:blue']
+    core:
+      +schema: core
+      +materialized: table
+      +tags: ['core', 'color:green']
+    mart:
+      +schema: mart
+      +materialized: table
+      +tags: ['mart', 'color:yellow']

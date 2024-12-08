@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "dbt-core-northwind"
+version = "0.1.0"
+description = ""
+authors = ["Raphael Coelho <raphael.phael@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyyaml = "^6.0.2"
+jinja2 = "^3.1.4"
+dbt-postgres = "^1.8.2"
+dbt-core = "^1.8.9"
+sqlfluff = "^3.2.5"
+sqlfluff-templater-dbt = "^3.2.5"
+redbaron = "^0.9.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.sqlfluff.core]
+dialect = "postgres"
+templater = "dbt"
+exclude_rules = "L001,L002"
+sql_file_exts = ".sql,.sql.j2,.dml,.ddl"
+max_line_length = 120
+
+exclude_paths = [
+    "dbt_packages/**",
+    "target/**",
+]
+
+[tool.sqlfluff.indentation]
+indented_joins = false
+indented_using_on = true
+template_blocks_indent = false
+
+# [tool.sqlfluff.templater]
+# unwrap_wrapped_queries = true
+
+[tool.sqlfluff.templater.dbt]
+project_dir = "C:/Users/rapha/Documents/GitHub/dbt-core-northwind/dbt_northwind"
+profiles_dir = "C:/Users/rapha/.dbt" # Caminho para o arquivo profiles.yml

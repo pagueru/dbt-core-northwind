@@ -1,0 +1,6 @@
+init: estrutura inicial do projeto
+- Cria a estrutura de pastas do projeto
+- Gerencia ambiente e suas dependências com Poetry
+- Configura o docker-compose com Postgres e PgAdmin para o ambiente local
+- Configura o dbt com as camadas raw, stg, core e mart
+- Adiciona configuração inicial do sqlfluff para padronização de SQL (necessario fix futuro)

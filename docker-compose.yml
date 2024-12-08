@@ -1,0 +1,47 @@
+services:
+  postgres:
+    container_name: dbt-postgres-northwind  # Nome para o container PostgreSQL
+    image: postgres:latest  # Imagem oficial do PostgreSQL mais recente
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}  # Nome do banco de dados inicial
+      POSTGRES_USER: ${POSTGRES_USER}  # Usuário padrão do banco de dados
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}  # Senha de acesso ao banco de dados
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data  # Volume persistente para dados do banco
+      - ./postgres/init-scripts:/docker-entrypoint-initdb.d  # Volume para scripts de inicialização
+    ports:
+      - "5432:5432"  # Mapeamento da porta padrão do PostgreSQL
+    networks:
+      - postgres_network  # Rede personalizada para comunicação entre serviços
+    healthcheck:  # Verifica se o banco está pronto
+      test: ["CMD-SHELL", "pg_isready -h localhost -U ${POSTGRES_USER}"] # Comandos de verificação
+      interval: 10s  # Intervalo entre as verificações de saúde
+      timeout: 5s  # Tempo máximo para resposta do healthcheck
+      retries: 5  # Número de tentativas antes de considerar o serviço indisponível
+
+  pgadmin:
+    container_name: dbt-pgadmin-northwind  # Nome para o container PgAdmin
+    image: dpage/pgadmin4:latest  # Imagem oficial do PgAdmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}  # Email padrão de acesso
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}  # Senha padrão de acesso
+      PGADMIN_LISTEN_PORT: 5050  # Porta de escuta do PgAdmin
+    volumes:
+      - pgadmin_working_dir:/var/lib/pgadmin  # Volume para persistência de configurações
+    ports:
+      - "5050:5050"  # Mapeamento da porta do PgAdmin
+    networks:
+      - postgres_network  # Mesma rede do PostgreSQL
+    depends_on:
+      postgres:
+        condition: service_healthy  # Aguarda o healthcheck do PostgreSQL antes de iniciar o PgAdmin
+
+networks:
+  postgres_network:
+    driver: bridge  # Tipo de rede Docker para comunicação entre containers
+
+volumes:
+  postgresql_data:
+    driver: local  # Driver de volume local para persistência de dados
+  pgadmin_working_dir:
+    driver: local  # Volume para persistência do PgAdmin
