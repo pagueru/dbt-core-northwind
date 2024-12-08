@@ -1,2 +1,2 @@
--- models/products.sql
-select * from products
+SELECT *
+	FROM public.products

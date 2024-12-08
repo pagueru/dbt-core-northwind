@@ -3,4 +3,5 @@
     "**/__pycache__/": true,
     },
     "dbt.perspectiveTheme": "Vintage",
+    "dbt.enableNewLineagePanel": true,
 }
