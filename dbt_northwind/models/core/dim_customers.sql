@@ -11,5 +11,5 @@ WITH customers AS (
         phone
     FROM {{ ref('stg_customers') }}
 )
-
-SELECT * FROM customers
+SELECT *
+	FROM customers

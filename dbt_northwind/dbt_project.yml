@@ -1,17 +1,13 @@
 # dbt_project.yml
 
-# Nomeie seu projeto! Nomes de projetos devem conter apenas letras minúsculas
-# e underscores (sublinhados). Um bom nome de pacote deve refletir o nome da 
-# sua organização ou o uso pretendido desses modelos.
+# Nome do Projeto (devem conter apenas letras minúsculas e underscores)
 name: 'dbt_northwind'
 version: '1.0.0'
 
-# Essa configuração determina qual "profile" o dbt deve usar para este projeto.
+# Determina o `profile` a ser usado pelo dbt
 profile: 'dbt_northwind'
 
-# Essas configurações especificam onde o dbt deve procurar diferentes tipos de arquivos.
-# A configuração `model-paths`, por exemplo, indica que os modelos neste projeto 
-# podem ser encontrados no diretório "models/". Provavelmente você não precisará alterar isso!
+# Configuração de pastas
 model-paths: ["models"]
 seed-paths: ["seeds"]
 test-paths: ["data_tests"]
@@ -26,26 +22,29 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-# Configuração dos modelos
-# Documentação completa: https://docs.getdbt.com/docs/configuring-models
-
-# Neste exemplo de configuração, informamos ao dbt para criar todos os modelos
-# no diretório "example/" como views. Essas configurações podem ser sobrescritas 
-# nos arquivos individuais dos modelos usando a macro `{{ config(...) }}`.
+# Configuração dos modelos: https://docs.getdbt.com/docs/configuring-models
 models:
   dbt_northwind:
+
+    # Camada de dados brutos (raw): snapshot dos dados da origem
     raw:
       +schema: raw
       +materialized: table
       +tags: ['raw', 'color:gray']
+
+    # Camada staging (stg): transformações leves, renomeação e padronização
     stg:
       +schema: stg
-      +materialized: table
+      +materialized: view
       +tags: ['stg', 'color:blue']
+
+    # Camada core: fatos e dimensões materializados como tabelas físicas
     core:
       +schema: core
       +materialized: table
       +tags: ['core', 'color:green']
+    
+    # Camada mart: dados agregados para dashboards e relatórios
     mart:
       +schema: mart
       +materialized: table
