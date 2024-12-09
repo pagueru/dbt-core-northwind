@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.employee_territories
+FROM public.employee_territories

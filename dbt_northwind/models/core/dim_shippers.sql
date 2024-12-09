@@ -6,4 +6,4 @@ WITH shippers AS (
     FROM {{ ref('stg_shippers') }}
 )
 SELECT *
-	FROM shippers
+FROM shippers

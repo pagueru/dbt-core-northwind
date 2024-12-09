@@ -9,4 +9,4 @@ WITH territories AS (
 		ON t.region_id = r.region_id
 )
 SELECT *
-	FROM territories
+FROM territories

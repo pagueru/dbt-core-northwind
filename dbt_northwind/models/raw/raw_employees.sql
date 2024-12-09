@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.employees
+FROM public.employees

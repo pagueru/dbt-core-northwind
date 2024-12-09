@@ -47,5 +47,5 @@ models:
     # Camada mart: dados agregados para dashboards e relatórios
     mart:
       +schema: mart
-      +materialized: table
+      +materialized: view
       +tags: ['mart', 'color:yellow']

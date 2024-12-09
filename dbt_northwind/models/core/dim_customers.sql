@@ -12,4 +12,4 @@ WITH customers AS (
     FROM {{ ref('stg_customers') }}
 )
 SELECT *
-	FROM customers
+FROM customers

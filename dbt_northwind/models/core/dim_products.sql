@@ -12,5 +12,5 @@ WITH products AS (
         discontinued
     FROM {{ ref('stg_products') }}
 )
-
-SELECT * FROM products
+SELECT *
+FROM products

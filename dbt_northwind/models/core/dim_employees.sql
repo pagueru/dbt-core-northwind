@@ -16,4 +16,4 @@ WITH employees AS (
     FROM {{ ref('stg_employees') }}
 )
 SELECT *
-	FROM employees
+FROM employees

@@ -20,7 +20,7 @@ O banco de dados **Northwind** contém informações sobre uma empresa fictícia
 
 O banco de dados inclui 14 tabelas, e seus relacionamentos são representados em um diagrama de entidade-relacionamento.
 
-![Diagram Northwind](./docs/images/northwind-er-diagram.png)
+![Diagram Northwind](./pics/northwind.png)
 
 ## Objetivos do Projeto
 

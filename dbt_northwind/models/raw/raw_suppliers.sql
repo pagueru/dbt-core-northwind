@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.suppliers
+FROM public.suppliers

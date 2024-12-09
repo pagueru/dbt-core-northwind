@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.orders
+FROM public.orders

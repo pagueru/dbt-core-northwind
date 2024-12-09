@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.territories
+FROM public.territories

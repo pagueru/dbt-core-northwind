@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.region
+FROM public.region

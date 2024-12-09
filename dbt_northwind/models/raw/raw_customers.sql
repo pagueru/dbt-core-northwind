@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.customers
+FROM public.customers

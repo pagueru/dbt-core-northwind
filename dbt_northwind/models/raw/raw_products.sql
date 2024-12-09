@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.products
+FROM public.products

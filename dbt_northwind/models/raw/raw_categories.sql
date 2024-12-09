@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.categories
+FROM public.categories

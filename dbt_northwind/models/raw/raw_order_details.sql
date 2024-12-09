@@ -1,2 +1,2 @@
 SELECT *
-	FROM public.order_details
+FROM public.order_details
